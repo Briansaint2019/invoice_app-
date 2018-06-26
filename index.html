@@ -1,85 +1,153 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://fonts.googleapis.com/css?family=Nobile" rel="stylesheet">    
+    <link href="https://fonts.googleapis.com/css?family=Tinos" rel="stylesheet">
     <title>Invoice App</title>
     <style>
-        body{
+        body {
             margin: 10% 4% 4% 4%;
+        
         }
-        .userContainer{
+
+        .userContainer {
+           
             display: flex;
             height: 25em;
             align-items: center;
             justify-content: center;
+            
         }
-        .invoiceContainer{
+
+        .invoiceContainer {
             margin-top: 4em;
             display: flex;
             flex-wrap: wrap;
-            width:100%;
+            width: 100%;
             height: auto;
+            
+
         }
-        .userProfile{
+
+        .userProfile {
             border: 1px solid black;
             display: flex;
             width: 60%;
             height: 100%;
+           /* change 1*/
+            background-color: #b7acaa;
+            /*change 2*/
+            border-radius: 15px;
         }
-        .user{
+
+        .user {
             height: auto;
+            text-align: center;
+            font-weight: bold;
+             
         }
-        #picContainer{
+
+        #picContainer {
             width: 40%;
-            margin: 8% 0% 8% 3%;
-            background-color: #4D6076;
-        }
-        #infoContainer{
-            margin: 5% 2% 2% 2%;
-            width: 60%;
-            font-family: Nobile;
-	        font-size: 16px;
-        }
-        p{
-            font-size: 22px;
-        }
-        img{
-            position: relative;
-            width: 100%;
-            height: 100%;
-        }
-        .invoice{
-            border: 1px solid black;
-            margin: 6% 3% 0% 3%;
-            padding: 2%;
-            width: 250px;
-            height: auto;
+            margin: 9% 9% 9% 9%;
+
+            background-color:#f9f1edec;
             
         }
-        .invoice > p{
+
+        #infoContainer {
+            margin: auto;
+            width: 60%;
+          /*change3*/
+          font-family: 'Tinos', serif;
+            /*chage4*/
+            font-size: 17px;
+             
+        }
+
+        p {
+            /*change5*/
+            font-size: 22px;
+           /*change 6*/
+           font-weight: bold; 
+            /*change 7*/
+            text-align: center;
+        }
+
+        img {
+            position: relative;
+            /*change 8*/
+            width: 69%;
+            height: 100%;
+        }
+
+        .invoice {
+            border: 1px solid black;
+            
+            margin: 7% 6% 0% 6%;
+            /*change 9*/
+            padding: 3.4%;
+            width: 250px;
+            height: auto;
+            /*change10*/
+            background-color: #56efd8;
+            
+            border-radius: 15px;
+        }
+
+        .invoice>p {
             position: relative;
             margin: 5px;
             left: 25%;
             font-size: 18px;
+           
         }
+
+        
+        
     </style>
 </head>
+
 <body>
-     
+    <div class="userContainer">
+        <div class="userProfile">
+            <div class="user" id="picContainer">
+                <img src="https://i.pinimg.com/originals/88/24/6a/88246a0cabf33633fe964d6a9273caa4.gif" alt="Logo Should be here">
+            </div>
+            <div class="user" id="infoContainter">
+                Name:
+                <p class="name"></p>
+                Company Name:
+                <p class="companyName"></p>
+                Address:
+                <p class="address"></p>
+                Email:
+                <p class="email"></p>
+
+
+            </div>
+        </div>
+    </div>
+    <p>Invoices</p>
+    <div class="invoiceContainer"></div>
+
     <script>
         //Fake it til you make it Database
         var user = {
-            name: ,
-            companyName: ,
-            address: ,
-            email: ,
-            picture: 
+            name: "Brian Saint-Hilaire",
+            companyName: "Techlaunch",
+            address: "8400 NW 36th st #450, Doral, FL, 33166",
+            email: "bsainthilaire@techlaunch.io",
+            picture: ""
+            
         }
 
+
         var invoices = [
+
             {
                 inv_id: "0156321",
                 companyName: user.companyName,
@@ -106,33 +174,73 @@
                 amount: 160,
                 cost: 414.00,
                 paid: 414.00
+            },
+            
+                       
+           
+           
+           
+           
+            //invoice adding
+            {
+                inv_id: "8675309",
+                companyName: user.companyName,
+                date: "3/3/2053",
+                order: "Joker's Jays",
+                amount: 3,
+                cost: 3457.67,
+                paid: 3457.67
+            },
+            {
+                inv_id: "777888",
+                companyName: user.companyName,
+                date: "7/27/2017",
+                order: "Gremlin's shoes",
+                amount: 2,
+                cost: 248.00,
+                paid: 150.00
+            },
+            {
+                inv_id: "098234",
+                companyName: user.companyName,
+                date: "9/29/2019",
+                order: "Dry Eraser",
+                amount: 160,
+                cost: 414.00,
+                paid: 414.00
             }
-        
+
+
+            
         ]
 
-        
-        //element selectors
 
-        //adding invoices
-        for(var i=0; i<invoices.length; i++){
+        //element selectors
+        document.querySelector(".name").textContent = user.name
+        document.querySelector(".companyName").textContent = user.companyName
+        document.querySelector(".address").textContent = user.address
+        document.querySelector(".email").textContent = user.email
+
+        // //adding invoices
+        for (var i = 0; i < invoices.length; i++) {
             document.querySelector('.invoiceContainer').innerHTML += `
             <div class="invoice" id=${invoices[i].inv_id}>
                 Invoice #:   <br/>    
-                <p>${} </p>
+                <p>${invoices[i].inv_id} </p>
                 Company Name:   <br /> 
-                <p>${} </p>
+                <p>${invoices[i].companyName} </p>
                 Date:  <br />
-                <p> ${} </p>
+                <p> ${invoices[i].date} </p>
                 Order:  <br />   
-                <p>${} </p>
+                <p>${invoices[i].order} </p>
                 Amount:   <br />     
-                <p>${} </p>
+                <p>${invoices[i].amount} </p>
                 Cost:       <br />    
-                <p>$${} </p>
+                <p>$${invoices[i].cost} </p>
                 Paid:       <br />   
-                <p> $${} </p>
+                <p> $${invoices[i].paid} </p>
                 Owed:        <br />   
-                <p>$${} </p>
+                <p>$${invoices[i].cost - invoices[i].paid} </p>
             </div>
             `
         }
@@ -140,4 +248,5 @@
 
     </script>
 </body>
+
 </html>
